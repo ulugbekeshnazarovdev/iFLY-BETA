@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -58,36 +59,38 @@ const Hero = () => {
   return (
     <div className="relative border w-full h-auto" id="hero">
       {/* Swiper Slider */}
-      <Swiper
-        modules={[Autoplay, Pagination, EffectFade]}
-        effect="fade"
-        autoplay={{ delay: 3000 }}
-        pagination={{ clickable: true }}
-        loop={true}
-        className="h-screen w-full"
-      >
-        {images.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.img})` }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/50"></div>
+      <LazyLoad height={200} offset={100}>
+        <Swiper
+          modules={[Autoplay, Pagination, EffectFade]}
+          effect="fade"
+          autoplay={{ delay: 3000 }}
+          pagination={{ clickable: true }}
+          loop={true}
+          className="h-screen w-full"
+        >
+          {images.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="relative h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${slide.img})` }}
+              >
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/50"></div>
 
-              {/* Content */}
-              <div className="absolute z-10 flex flex-col items-center justify-center h-full w-full text-center text-white px-4 sm:px-6">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 sm:mb-6">
-                  {slide.title}
-                </h1>
-                <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
-                  {slide.subtitle}
-                </p>
+                {/* Content */}
+                <div className="absolute z-10 flex flex-col items-center justify-center h-full w-full text-center text-white px-4 sm:px-6">
+                  <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 sm:mb-6">
+                    {slide.title}
+                  </h1>
+                  <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
+                    {slide.subtitle}
+                  </p>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </LazyLoad>
 
       {/* Cards Section */}
       <div className="container mx-auto px-5 py-10">
