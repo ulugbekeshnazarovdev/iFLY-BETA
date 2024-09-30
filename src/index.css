@@ -7,3 +7,14 @@ html{
   scroll-behavior: smooth;
   font-family:"Poppins", system-ui ;
 }
+input, select {
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+input:focus, select:focus {
+  border-color: #ff6347;
+  box-shadow: 0 0 5px rgba(255, 99, 71, 0.5);
+}

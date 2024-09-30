@@ -2,12 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { FaFacebook, FaInstagram, FaTelegram, FaYoutube } from 'react-icons/fa';
 import { FaThreads } from 'react-icons/fa6';
 import { HiBars3 } from 'react-icons/hi2';
-import { IoCloseSharp } from 'react-icons/io5';
+import { IoClose, IoCloseSharp } from 'react-icons/io5';
 import { MdOutlineLightMode } from 'react-icons/md';
 import { RxLightningBolt } from 'react-icons/rx';
 import LanguageDropdown from '../../dropdownLanguage';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
+  //contact modal
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage`,
+        {
+          chat_id: '<YOUR_CHAT_ID>',
+          text: `Ism: ${data.name}\nEmail: ${data.email}\nMavzu: ${data.subject}\nXabar: ${data.message}`,
+        }
+      );
+      if (response.data.ok) {
+        toast.success('Xabaringiz yuborildi!', { autoClose: 3000 });
+        toggleModal();
+      } else {
+        toast.error('Xabar yuborishda xato yuz berdi.');
+      }
+    } catch (error) {
+      toast.error('Xabar yuborishda xato yuz berdi.');
+      console.error(error);
+    }
+  };
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  //contact modal
   // Retrieve initial dark mode state from localStorage
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('dark-mode');
@@ -89,13 +127,12 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a
-                href="#contact"
-                onClick={closeNavbar}
+              <button
+                onClick={toggleModal}
                 className="hover:text-white/50 text-zinc-100 font-medium text-[22px]  duration-500 dark:text-white"
               >
                 Contact
-              </a>
+              </button>
             </li>
           </ul>
 
@@ -209,15 +246,99 @@ const Navbar = () => {
               </a>
             </li>
             <li className="w-full">
-              <a
-                onClick={closeNavbar}
-                href="#contact"
-                className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff]  font-medium px-2 py-3  rounded-md inline-block "
+              <button
+                onClick={toggleModal}
+                className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff] text-left  font-medium px-2 py-3  rounded-md inline-block "
               >
                 Contact
-              </a>
+              </button>
             </li>
           </ul>
+        </div>
+      )}
+
+      {modalOpen && (
+        <div className="container mx-auto px-5">
+          <div className="fixed  inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-[450px]">
+              <div className="flex items-center justify-between">
+                <h2 className="text-4xl font-semibold mb-4">Contact Me!</h2>
+                <button
+                  className="flex justify-center items-center text-white text-4xl p-2 bg-orange-500 rounded-md cursor-pointer"
+                  onClick={toggleModal}
+                >
+                  <IoClose />
+                </button>
+              </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="mb-4">
+                  <label className="block mb-1">Name</label>
+                  <input
+                    type="text"
+                    className={`border p-3 w-full h-12 text-lg ${
+                      errors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('name', { required: 'Ismni kiriting' })}
+                  />
+                  {errors.name && (
+                    <span className="text-red-500 text-sm">
+                      {errors.name.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1">Email</label>
+                  <input
+                    type="email"
+                    className={`border p-3 w-full h-12 text-lg ${
+                      errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('email', { required: 'Emailni kiriting' })}
+                  />
+                  {errors.email && (
+                    <span className="text-red-500 text-sm">
+                      {errors.email.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1">Subject</label>
+                  <input
+                    type="text"
+                    className={`border p-3 w-full h-12 text-lg ${
+                      errors.subject ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('subject', { required: 'Mavzuni kiriting' })}
+                  />
+                  {errors.subject && (
+                    <span className="text-red-500 text-sm">
+                      {errors.subject.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1">Your Message</label>
+                  <textarea
+                    className={`border p-3 w-full h-24 text-lg ${
+                      errors.message ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('message', { required: 'Xabarni kiriting' })}
+                  />
+                  {errors.message && (
+                    <span className="text-red-500 text-sm">
+                      {errors.message.message}
+                    </span>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-orange-500 text-white  p-3 rounded hover:bg-gray-200 transition"
+                >
+                  Yuborish
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       )}
     </nav>

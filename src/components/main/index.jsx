@@ -1,8 +1,8 @@
 import React from 'react';
 import Tours from './tours';
 import Cite from './cite';
-import Contact from './contact';
 import AboutSection from './about';
+import FlightBookingForm from './flight';
 
 const Main = () => {
   return (
@@ -10,7 +10,7 @@ const Main = () => {
       <Tours />
       <Cite />
       <AboutSection />
-      <Contact />
+      <FlightBookingForm />
     </main>
   );
 };
