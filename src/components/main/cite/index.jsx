@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSpring, animated } from 'react-spring';
 import Modal from 'react-modal';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -11,11 +11,19 @@ import Tokyo from '../../../assets/t-2.jpg';
 import Turkia from '../../../assets/tur-3.jpg';
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS styles
+import { StateContext } from '../../../App';
 
 // Set app element for accessibility
 Modal.setAppElement('#root');
 
 const Cite = () => {
+  // useContext
+  const { modalOpen, setModalOpen } = useContext(StateContext);
+
+  function toggleModal() {
+    setModalOpen(!modalOpen);
+  }
+
   // Data array for the cards
   const countries = [
     {
@@ -189,12 +197,18 @@ const Cite = () => {
             <p>
               <strong>Currency:</strong> {selectedCountry.currency}
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex justify-between gap-4 items-center">
               <button
                 onClick={closeModal}
-                className="bg-gray-500 text-white py-2 px-4 rounded-lg flex items-center"
+                className="bg-gray-500 w-full text-center text-white py-2 px-4 rounded-lg"
               >
-                <AiOutlineClose className="mr-2" /> Close
+                Close
+              </button>
+              <button
+                onClick={toggleModal}
+                className="bg-gray-500 w-full text-center text-white py-2 px-4 rounded-lg"
+              >
+                Contact
               </button>
             </div>
           </div>

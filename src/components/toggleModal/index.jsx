@@ -1,0 +1,135 @@
+import { useContext } from 'react';
+import { StateContext } from '../../App';
+import { useForm } from 'react-hook-form';
+import { IoClose } from 'react-icons/io5';
+import axios from 'axios'; // axiosni import qiling
+import { toast } from 'react-toastify'; // toast uchun import
+import 'react-toastify/dist/ReactToastify.css'; // toastning css faylini import qilish
+
+const ToggleModal = () => {
+  const { modalOpen, setModalOpen } = useContext(StateContext);
+
+  function toggleModal() {
+    setModalOpen(!modalOpen);
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const botToken = '7423157003:AAGQ37oxM38D0bdXbv6K5XzBl1m30H30fPQ';
+  const chatId = '5932603646';
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        `https://api.telegram.org/bot${botToken}/sendMessage`,
+        {
+          chat_id: chatId,
+          text: `Ism: ${data.name}\nEmail: ${data.email}\nMavzu: ${data.subject}\nXabar: ${data.message}`,
+        }
+      );
+      if (response.data.ok) {
+        toast.success('Xabaringiz yuborildi!', { autoClose: 3000 });
+        toggleModal();
+      } else {
+        toast.error('Xabar yuborishda xato yuz berdi.');
+      }
+    } catch (error) {
+      toast.error('Xabar yuborishda xato yuz berdi.');
+      console.error(error);
+    }
+  };
+
+  return (
+    <div>
+      {modalOpen && (
+        <div className="container mx-auto px-5">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-[450px]">
+              <div className="flex items-center justify-between">
+                <h2 className="text-4xl font-semibold mb-4">Contact Me!</h2>
+                <button
+                  className="flex justify-center items-center text-white text-4xl p-2 bg-orange-500 rounded-md cursor-pointer"
+                  onClick={toggleModal}
+                >
+                  <IoClose />
+                </button>
+              </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="mb-4">
+                  <label className="block mb-1">Name</label>
+                  <input
+                    type="text"
+                    className={`border p-3 w-full h-12 text-lg ${
+                      errors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('name', { required: 'Ismni kiriting' })}
+                  />
+                  {errors.name && (
+                    <span className="text-red-500 text-sm">
+                      {errors.name.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1">Email</label>
+                  <input
+                    type="email"
+                    className={`border p-3 w-full h-12 text-lg ${
+                      errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('email', { required: 'Emailni kiriting' })}
+                  />
+                  {errors.email && (
+                    <span className="text-red-500 text-sm">
+                      {errors.email.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1">Subject</label>
+                  <input
+                    type="text"
+                    className={`border p-3 w-full h-12 text-lg ${
+                      errors.subject ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('subject', { required: 'Mavzuni kiriting' })}
+                  />
+                  {errors.subject && (
+                    <span className="text-red-500 text-sm">
+                      {errors.subject.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1">Your Message</label>
+                  <textarea
+                    className={`border p-3 w-full h-24 text-lg ${
+                      errors.message ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    {...register('message', { required: 'Xabarni kiriting' })}
+                  />
+                  {errors.message && (
+                    <span className="text-red-500 text-sm">
+                      {errors.message.message}
+                    </span>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-orange-500 text-white  p-3 rounded hover:bg-gray-200 transition"
+                >
+                  Yuborish
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ToggleModal;

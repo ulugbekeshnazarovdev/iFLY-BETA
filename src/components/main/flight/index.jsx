@@ -9,8 +9,13 @@ const countries = [
   { code: 'US', name: 'United States' },
   { code: 'CA', name: 'Canada' },
   { code: 'GB', name: 'United Kingdom' },
-  // Add the rest of your countries...
   { code: 'UZ', name: 'Uzbekistan' },
+  { code: 'DE', name: 'Germany' },
+  { code: 'FR', name: 'France' },
+  { code: 'IT', name: 'Italy' },
+  { code: 'CN', name: 'China' },
+  { code: 'JP', name: 'Japan' },
+  { code: 'RU', name: 'Russia' },
 ];
 
 const FlightBookingForm = () => {
@@ -19,13 +24,15 @@ const FlightBookingForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const botToken = '7423157003:AAGQ37oxM38D0bdXbv6K5XzBl1m30H30fPQ';
+  const chatId = '5932603646';  
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post('YOUR_TELEGRAM_BOT_API_URL', {
-        chat_id: 'YOUR_CHAT_ID',
+      await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        chat_id: chatId,
         text: `Yangi rezervatsiya:\n
         Ism: ${data.fullName}\n
         Telefon 1: ${data.phone1}\n
@@ -48,7 +55,9 @@ const FlightBookingForm = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white border-t-2 border-orange-500 dark:bg-gray-900">
-      <div className="relative z-10 flex items-center justify-center p-4  bg-opacity-50 min-h-screen">
+      <ToastContainer className="z-50" />
+
+      <div className="relative z-10 flex items-center justify-center p-4 bg-opacity-50 min-h-screen">
         <div className="container mx-auto px-5">
           <div className="bg-white rounded-2xl shadow-2xl p-8 w-full">
             <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
@@ -60,7 +69,7 @@ const FlightBookingForm = () => {
             >
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Full Name...
+                  Full Name
                 </label>
                 <input
                   type="text"
@@ -116,7 +125,7 @@ const FlightBookingForm = () => {
                   ))}
                 </select>
                 {errors.departureCountry && (
-                  <span className="text-red-500">Required </span>
+                  <span className="text-red-500">Required field</span>
                 )}
               </div>
               <div>
@@ -134,7 +143,7 @@ const FlightBookingForm = () => {
                     </option>
                   ))}
                 </select>
-                {errors.phone2 && (
+                {errors.destinationCountry && (
                   <span className="text-red-500">Required field</span>
                 )}
               </div>
@@ -203,28 +212,16 @@ const FlightBookingForm = () => {
               <div className="col-span-1 md:col-span-2 lg:col-span-3">
                 <button
                   type="submit"
-                  className={`w-full py-4 text-white font-semibold rounded-lg ${
-                    isSubmitting
-                      ? 'bg-gray-400'
-                      : 'bg-orange-500 hover:bg-orange-600'
-                  }`}
+                  className="w-full p-4 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition duration-300"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send'}
+                  {isSubmitting ? 'Sending...' : 'Submit'}
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 };

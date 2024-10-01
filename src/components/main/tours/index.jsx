@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -13,8 +13,13 @@ import Tailand from '../../../assets/t-1.jpg';
 import Tokyo from '../../../assets/t-2.jpg';
 import Turkia from '../../../assets/tur-3.jpg';
 import Paris from '../../../assets/p-1.jpg';
+import { StateContext } from '../../../App';
 
 const Tours = () => {
+  const { modalOpen, setModalOpen } = useContext(StateContext);
+  function toggleModal() {
+    setModalOpen(!modalOpen);
+  }
   const tourData = [
     {
       country: 'France',
@@ -89,12 +94,12 @@ const Tours = () => {
                     {tour.title}
                   </h3>
                   <p className="text-gray-300 mb-6">{tour.description}</p>
-                  <a
-                    href="#contact"
+                  <button
+                    onClick={toggleModal}
                     className="bg-orange-600 text-center inline-block text-white px-4 py-2 rounded-full duration-500 hover:bg-orange-700/60 transition-all"
                   >
                     {tour.contact}
-                  </a>
+                  </button>
                 </div>
               </div>
             </SwiperSlide>
