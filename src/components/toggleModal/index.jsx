@@ -19,8 +19,8 @@ const ToggleModal = () => {
     formState: { errors },
   } = useForm();
 
-  const botToken = '7423157003:AAGQ37oxM38D0bdXbv6K5XzBl1m30H30fPQ';
-  const chatId = '5932603646';
+  const botToken = import.meta.env.VITE_REACT_APP_BOT_TOKEN ;
+  const chatId = import.meta.env.VITE_REACT_APP_CHAT_ID;
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(

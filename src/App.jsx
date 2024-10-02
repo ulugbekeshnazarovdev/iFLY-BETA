@@ -5,7 +5,7 @@ import Footer from './components/footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ToggleModal from './components/toggleModal';
-
+import './i18n'; 
 AOS.init();
 
 export const StateContext = createContext({});

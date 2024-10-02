@@ -16,43 +16,47 @@ import Tailand from '../../../assets/t-1.jpg';
 import Tokyo from '../../../assets/t-2.jpg';
 import Turkia from '../../../assets/tur-3.jpg';
 
+import { useTranslation } from 'react-i18next';
+
 const Hero = () => {
+  const { t, i18n } = useTranslation();
+
   // Array of images for the slider
   const images = [
     {
       img: Tokyo,
-      title: 'Explore Tokyo',
-      subtitle: 'Discover the vibrant culture and technology of Japan.',
+      title: t('title-1'),
+      subtitle: t('subtitle1'),
     },
     {
       img: Island,
-      title: 'Island Getaway',
-      subtitle: 'Experience tranquility in breathtaking island settings.',
+      title: t('title-2'),
+      subtitle: t('subtitle2'),
     },
     {
       img: Australia,
-      title: 'Australia Adventure',
-      subtitle: 'Explore the stunning landscapes and wildlife of Australia.',
+      title: t('title-3'),
+      subtitle: t('subtitle3'),
     },
     {
       img: Dubai,
-      title: 'Explore Dubai',
-      subtitle: 'Discover luxury, innovation, and adventure in the UAE.',
+      title: t('title-4'),
+      subtitle: t('subtitle4'),
     },
     {
       img: LosAngeles,
-      title: 'City of Angels',
-      subtitle: 'Dive into the entertainment capital of the world.',
+      title: t('title-5'),
+      subtitle: t('subtitle5'),
     },
     {
       img: Tailand,
-      title: 'Tropical Thailand',
-      subtitle: 'Unwind on beautiful beaches and savor delicious cuisine.',
+      title: t('title-6'),
+      subtitle: t('subtitle6'),
     },
     {
       img: Turkia,
-      title: 'Magical Turkey',
-      subtitle: 'Explore the rich history and stunning landscapes of Turkey.',
+      title: t('title-7'),
+      subtitle: t('subtitle7'),
     },
   ];
 
@@ -96,24 +100,18 @@ const Hero = () => {
       <div className="container mx-auto px-5 py-10">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <div className="bg-white dark:bg-gray-900 dark:text-white p-6 rounded-xl shadow-lg border w-full backdrop-blur-xl">
-            <h3 className="text-xl font-semibold mb-4">Amazing Beach</h3>
-            <p className="text-zinc-400 dark:text-white">
-              Discover stunning beaches and relax under the sun.
-            </p>
+            <h3 className="text-xl font-semibold mb-4">{t('heading-1')}</h3>
+            <p className="text-zinc-400 dark:text-white">{t('paragriph-1')}</p>
           </div>
 
           <div className="bg-white dark:bg-gray-900 dark:text-white p-6 rounded-xl shadow-lg border w-full backdrop-blur-xl">
-            <h3 className="text-xl font-semibold mb-4">Mountain Adventures</h3>
-            <p className="text-zinc-400 dark:text-white">
-              Embark on thrilling mountain hikes and explore nature.
-            </p>
+            <h3 className="text-xl font-semibold mb-4">{t('heading-2')}</h3>
+            <p className="text-zinc-400 dark:text-white">{t('paragriph-2')}</p>
           </div>
 
           <div className="bg-white dark:bg-gray-900 dark:text-white p-6 rounded-xl shadow-lg border w-full backdrop-blur-xl">
-            <h3 className="text-xl font-semibold mb-4">City Tours</h3>
-            <p className="text-zinc-400 dark:text-white">
-              Experience the culture and history of iconic cities.
-            </p>
+            <h3 className="text-xl font-semibold mb-4">{t('heading-3')}</h3>
+            <p className="text-zinc-400 dark:text-white">{t('paragriph-2')}</p>
           </div>
         </div>
       </div>
