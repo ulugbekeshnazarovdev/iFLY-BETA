@@ -59,7 +59,7 @@ const Tours = () => {
       id="tours"
     >
       <div className="container mx-auto px-5 ">
-        <h2 className="text-5xl font-bold text-center dark:text-white text-gray-800 mb-14">
+        <h2 className="text-5xl font-bold text-center dark:text-orange-500 text-white mb-14">
           {t('tour-text-heading')}
         </h2>
         <Swiper

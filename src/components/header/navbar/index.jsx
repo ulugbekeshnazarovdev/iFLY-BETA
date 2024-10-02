@@ -29,6 +29,7 @@ const Navbar = () => {
   function toggleModal() {
     setModalOpen(!modalOpen);
   }
+
   // Retrieve initial dark mode state from localStorage
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('dark-mode');
@@ -36,6 +37,7 @@ const Navbar = () => {
   });
 
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleBars = () => {
     setIsOpen(!isOpen);
@@ -62,8 +64,28 @@ const Navbar = () => {
     }
   }, [isDarkMode]);
 
+  // Effect to track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="bg-orange-500 dark:bg-gray-900 shadow fixed w-full left-0 z-50 h-16">
+    <nav
+      className={`${
+        scrollPosition > 50
+          ? 'backdrop-blur-lg bg-opacity-10 dark:bg-gray-900/30'
+          : ''
+      } bg-orange-500 dark:bg-gray-900 shadow fixed w-full left-0 z-50 h-16 transition-all duration-300`}
+    >
       <div className="container mx-auto px-2">
         <div className="flex justify-between items-center h-16">
           <a href="/" className="w-14 h-14">
@@ -214,7 +236,6 @@ const Navbar = () => {
                 {t('link-2')}
               </a>
             </li>
-
             <li className="w-full">
               <a
                 onClick={closeNavbar}
@@ -235,8 +256,11 @@ const Navbar = () => {
             </li>
             <li className="w-full">
               <button
-                onClick={toggleModal}
-                className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff] text-left  font-medium px-2 py-3  rounded-md inline-block "
+                onClick={() => {
+                  toggleModal();
+                  closeNavbar();
+                }}
+                className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff]  font-medium px-2 py-3  rounded-md inline-block"
               >
                 {t('link-5')}
               </button>

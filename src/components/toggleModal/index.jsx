@@ -2,27 +2,30 @@ import { useContext } from 'react';
 import { StateContext } from '../../App';
 import { useForm } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
-import axios from 'axios'; // axiosni import qiling
-import { toast } from 'react-toastify'; // toast uchun import
-import 'react-toastify/dist/ReactToastify.css'; // toastning css faylini import qilish
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 
 const ToggleModal = () => {
   const { t } = useTranslation();
   const { modalOpen, setModalOpen } = useContext(StateContext);
 
-  function toggleModal() {
-    setModalOpen(!modalOpen);
-  }
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const botToken = import.meta.env.VITE_REACT_APP_BOT_TOKEN;
   const chatId = import.meta.env.VITE_REACT_APP_CHAT_ID;
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+    reset(); // Modal yopilganda formni tozalash
+  };
+
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
@@ -35,6 +38,7 @@ const ToggleModal = () => {
       if (response.data.ok) {
         toast.success(t('contact__toast-success'), { autoClose: 3000 });
         toggleModal();
+        reset(); // Muvaffaqiyatli yuborilgandan so'ng formni tozalash
       } else {
         toast.error(t('contact__toast-error'));
       }
@@ -80,7 +84,6 @@ const ToggleModal = () => {
                   <label className="block mb-1">{t('contact__label-2')}</label>
                   <input
                     type="email"
-                    placeholder=""
                     className={`border p-3 w-full h-12 text-lg ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
@@ -123,7 +126,7 @@ const ToggleModal = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-orange-500 text-white  p-3 rounded hover:bg-gray-200 transition"
+                  className="w-full bg-orange-500 text-white p-3 rounded hover:bg-gray-200 transition"
                 >
                   {t('button__contact')}
                 </button>

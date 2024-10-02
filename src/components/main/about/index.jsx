@@ -42,10 +42,10 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Main heading */}
         <div className="text-center mb-12" data-aos="fade-up">
-          <h2 className="text-3xl font-extrabold dark:text-orange-500 text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-extrabold dark:text-orange-500 text-white sm:text-4xl">
             {t('about_heading-1')}
           </h2>
-          <p className="mt-4 text-xl text-gray-600 dark:text-orange-500">
+          <p className="mt-4 text-xl text-white dark:text-orange-500">
             {t('about__paragriph-1')}
           </p>
         </div>
@@ -133,7 +133,7 @@ const AboutSection = () => {
 
         {/* Testimonials */}
         <div className="mt-16" data-aos="fade-up">
-          <h3 className="text-2xl font-bold dark:text-white text-gray-900 mb-4 text-center">
+          <h3 className="text-2xl font-bold dark:text-orange-500 text-white mb-4 text-center">
             {t('foot_heading-about')}
           </h3>
           <Swiper
