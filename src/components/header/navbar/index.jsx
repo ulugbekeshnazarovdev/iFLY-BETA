@@ -1,23 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 import {
   FaFacebookF,
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
   FaYoutube,
-} from "react-icons/fa";
-import { HiBars3 } from "react-icons/hi2";
-import { IoCloseSharp } from "react-icons/io5";
-import { MdOutlineLightMode } from "react-icons/md";
-import { RxLightningBolt } from "react-icons/rx";
-import LanguageDropdown from "../../dropdownLanguage";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { toast } from "react-toastify";
-import toggleModal from "../../toggleModal";
-import { StateContext } from "../../../App";
-import logo from "../../../assets/logo.png";
-import { useTranslation } from "react-i18next";
+} from 'react-icons/fa';
+import { HiBars3 } from 'react-icons/hi2';
+import { IoCloseSharp } from 'react-icons/io5';
+import { MdOutlineLightMode } from 'react-icons/md';
+import { RxLightningBolt } from 'react-icons/rx';
+import LanguageDropdown from '../../dropdownLanguage';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import toggleModal from '../../toggleModal';
+import { StateContext } from '../../../App';
+import logo from '../../../assets/logo.png';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   // language section of state
@@ -31,8 +31,8 @@ const Navbar = () => {
   }
   // Retrieve initial dark mode state from localStorage
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem("dark-mode");
-    return savedMode === "enabled"; // Default to 'false' if not found
+    const savedMode = localStorage.getItem('dark-mode');
+    return savedMode === 'enabled'; // Default to 'false' if not found
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -54,11 +54,11 @@ const Navbar = () => {
   // Effect to handle local storage and body class
   useEffect(() => {
     if (isDarkMode) {
-      localStorage.setItem("dark-mode", "enabled");
-      document.body.classList.add("dark");
+      localStorage.setItem('dark-mode', 'enabled');
+      document.body.classList.add('dark');
     } else {
-      localStorage.setItem("dark-mode", "disabled");
-      document.body.classList.remove("dark");
+      localStorage.setItem('dark-mode', 'disabled');
+      document.body.classList.remove('dark');
     }
   }, [isDarkMode]);
 
@@ -66,8 +66,8 @@ const Navbar = () => {
     <nav className="bg-orange-500 dark:bg-gray-900 shadow fixed w-full left-0 z-50 h-16">
       <div className="container mx-auto px-5">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="p-2">
-            <img src={logo} className="w-24 h-24 p-4" alt="site logo" />
+          <a href="/" className="w-24 h-24">
+            <img src={logo} className="w-full p-4" alt="site logo" />
           </a>
 
           <ul className="hidden lg:flex xl:flex 2xl:flex items-center xl:w-[700px] justify-end gap-8">
@@ -77,7 +77,7 @@ const Navbar = () => {
                 onClick={closeNavbar}
                 className="hover:text-white/50 text-zinc-100 font-medium text-[22px]  duration-500 dark:text-white"
               >
-                {t("link-1")}
+                {t('link-1')}
               </a>
             </li>
             <li>
@@ -86,7 +86,7 @@ const Navbar = () => {
                 onClick={closeNavbar}
                 className="hover:text-white/50 text-zinc-100 font-medium text-[22px]  duration-500 dark:text-white"
               >
-                {t("link-2")}
+                {t('link-2')}
               </a>
             </li>
             <li>
@@ -129,7 +129,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                {" "}
+                {' '}
                 <a
                   href="https://www.twitter.com"
                   target="_blink"
@@ -139,7 +139,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                {" "}
+                {' '}
                 <a
                   href="https://www.instagram.com"
                   target="_blink"
@@ -211,7 +211,7 @@ const Navbar = () => {
                 href="#cite"
                 className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff]  font-medium px-2 py-3  rounded-md inline-block "
               >
-                {t("link-2")}
+                {t('link-2')}
               </a>
             </li>
 
@@ -230,7 +230,7 @@ const Navbar = () => {
                 href="#about"
                 className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff]  font-medium px-2 py-3  rounded-md inline-block "
               >
-                {t("link-4")}
+                {t('link-4')}
               </a>
             </li>
             <li className="w-full">
@@ -238,7 +238,7 @@ const Navbar = () => {
                 onClick={toggleModal}
                 className="hover:text-white hover:bg-gray-800 text-white w-full text-2xl duration-700 hover:scale-105 transition-all dark:text-white dark:hover:text-[#007bff] text-left  font-medium px-2 py-3  rounded-md inline-block "
               >
-                {t("link-5")}
+                {t('link-5')}
               </button>
             </li>
           </ul>
