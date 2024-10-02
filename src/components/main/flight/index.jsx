@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// Sample JSON data for countries
-const countries = [
-  { code: 'US', name: 'United States' },
-  { code: 'CA', name: 'Canada' },
-  { code: 'GB', name: 'United Kingdom' },
-  { code: 'UZ', name: 'Uzbekistan' },
-  { code: 'DE', name: 'Germany' },
-  { code: 'FR', name: 'France' },
-  { code: 'IT', name: 'Italy' },
-  { code: 'CN', name: 'China' },
-  { code: 'JP', name: 'Japan' },
-  { code: 'RU', name: 'Russia' },
-];
+import { useTranslation } from 'react-i18next';
 
 const FlightBookingForm = () => {
+  const { t, i18 } = useTranslation();
   // Define state for each input
+  // Sample JSON data for countries
+  const countries = [
+    { code: 'US', name: t('countries__name-1') },
+    { code: 'CA', name: t('countries__name-2') },
+    { code: 'GB', name: t('countries__name-3') },
+    { code: 'UZ', name: t('countries__name-4') },
+    { code: 'DE', name: t('countries__name-5') },
+    { code: 'FR', name: t('countries__name-6') },
+    { code: 'IT', name: t('countries__name-7') },
+    { code: 'CN', name: t('countries__name-8') },
+    { code: 'JP', name: t('countries__name-9') },
+    { code: 'RU', name: t('countries__name-10') },
+  ];
   const [fullName, setFullName] = useState('');
   const [phone1, setPhone1] = useState('');
   const [phone2, setPhone2] = useState('');
@@ -73,51 +74,62 @@ const FlightBookingForm = () => {
         <div className="container mx-auto px-5">
           <div className="bg-white dark:bg-orange-500 rounded-2xl shadow-2xl p-8 w-full">
             <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
-              Flight ticket booking
+              {t('heading__flight')}
             </h2>
-            <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <form
+              onSubmit={onSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name')}
+                </label>
                 <input
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full p-4 border border-gray-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Ism, sharif, familyangizni kiriting"
+                  placeholder={t('count__username_placeholder-1')}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Tel - Number 1</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-2')}
+                </label>
                 <input
                   type="text"
                   value={phone1}
                   onChange={(e) => setPhone1(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Telefon raqamingizni kiriting"
+                  placeholder={t('count__username_placeholder-2')}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Tel - Number 2</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-3')}
+                </label>
                 <input
                   type="text"
                   value={phone2}
                   onChange={(e) => setPhone2(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Ikkinchi telefon raqamingizni kiriting"
+                  placeholder={t('count__username_placeholder-2')}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">From which country</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-4')}
+                </label>
                 <select
                   value={departureCountry}
                   onChange={(e) => setDepartureCountry(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 >
-                  <option value="">Choose...</option>
+                  <option value="">{t('select__name')}</option>
                   {countries.map((country) => (
                     <option key={country.code} value={country.name}>
                       {country.name}
@@ -126,14 +138,16 @@ const FlightBookingForm = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">To which country</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-5')}
+                </label>
                 <select
                   value={destinationCountry}
                   onChange={(e) => setDestinationCountry(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 >
-                  <option value="">Choose...</option>
+                  <option value="">{t('select__name')}</option>
                   {countries.map((country) => (
                     <option key={country.code} value={country.name}>
                       {country.name}
@@ -142,7 +156,9 @@ const FlightBookingForm = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date of departure</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-6')}
+                </label>
                 <input
                   type="date"
                   value={departureDate}
@@ -152,7 +168,9 @@ const FlightBookingForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Return date</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-7')}
+                </label>
                 <input
                   type="date"
                   value={returnDate}
@@ -162,34 +180,40 @@ const FlightBookingForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-9')}
+                </label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Email manzilingizni kiriting"
+                  placeholder={t('count__username_placeholder-3')}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Telegram NickName</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-10')}
+                </label>
                 <input
                   type="text"
                   value={telegramNick}
                   onChange={(e) => setTelegramNick(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Telegram nickingizni kiriting"
+                  placeholder={t('count__username_placeholder-4')}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Instagram Nickname</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t('count__label-name-11')}
+                </label>
                 <input
                   type="text"
                   value={instagramNick}
                   onChange={(e) => setInstagramNick(e.target.value)}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Instagram nickingizni kiriting"
+                  placeholder={t('count__username_placeholder-5')}
                 />
               </div>
               <div className="col-span-1 md:col-span-2 lg:col-span-3">
@@ -198,7 +222,7 @@ const FlightBookingForm = () => {
                   className="w-full p-4 bg-orange-500 dark:bg-gray-900 text-white font-bold rounded-lg hover:bg-orange-600 transition duration-300"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Yuborilmoqda...' : 'Yuborish'}
+                  {isSubmitting ? t('count__button-1') : t('count__button-2')}
                 </button>
               </div>
             </form>

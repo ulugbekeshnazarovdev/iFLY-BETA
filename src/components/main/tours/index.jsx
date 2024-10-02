@@ -14,47 +14,42 @@ import Tokyo from '../../../assets/t-2.jpg';
 import Turkia from '../../../assets/tur-3.jpg';
 import Paris from '../../../assets/p-1.jpg';
 import { StateContext } from '../../../App';
+import { useTranslation } from 'react-i18next';
 
 const Tours = () => {
+  const { t, i18n } = useTranslation();
   const { modalOpen, setModalOpen } = useContext(StateContext);
   function toggleModal() {
     setModalOpen(!modalOpen);
   }
   const tourData = [
     {
-      country: 'France',
-      title: 'Discover Paris',
-      description:
-        'Explore the city of love, famous for its culture, art, and cuisine.',
+      country: t('tour-country-1'),
+      title: t('tour-title-1'),
+      description: t('tour-description-1'),
       backgroundImage: Paris,
-      contact: 'Contact Us',
-      readMoreLink: '#',
+      contact: 'tour-contact',
     },
     {
-      country: 'Japan',
-      title: 'Tokyo Adventure',
-      description:
-        'Experience the blend of tradition and technology in the heart of Japan.',
+      country: t('tour-country-3'),
+      title: t('tour-title-2'),
+      description: t('tour-description-2'),
       backgroundImage: Tokyo, // Corrected image import
-      contact: 'Contact Us',
-      readMoreLink: '#',
+      contact: t('tour-contact'),
     },
     {
-      country: 'Australia',
-      title: 'Australia Adventure',
-      description:
-        'Discover the wild landscapes of Australia, from outback deserts to vibrant coral reefs.',
+      country: t('tour-country-3'),
+      title: t('tour-title-3'),
+      description: t('tour-description-3'),
       backgroundImage: Australia, // Added proper image
-      contact: 'Contact Us',
-      readMoreLink: '#',
+      contact: t('tour-contact'),
     },
     {
-      country: 'UAE',
-      title: 'Dubai Luxury',
-      description: 'Witness the futuristic skyline and luxury of Dubai.',
+      country: t('tour-country-4'),
+      title: t('tour-title-4'),
+      description: t('tour-description-4'),
       backgroundImage: Dubai, // Added proper image
-      contact: 'Contact Us',
-      readMoreLink: '#',
+      contact: t('tour-contact'),
     },
   ];
 
@@ -65,7 +60,7 @@ const Tours = () => {
     >
       <div className="container mx-auto px-5 ">
         <h2 className="text-5xl font-bold text-center dark:text-white text-gray-800 mb-14">
-          Explore Our Premium Tours
+          {t('tour-text-heading')}
         </h2>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}

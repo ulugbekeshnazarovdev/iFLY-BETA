@@ -7,44 +7,46 @@ import IFLY from '../../../assets/ifly.jpg';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
+import { useTranslation } from 'react-i18next';
 
 const AboutSection = () => {
+  const { t, i18 } = useTranslation();
   const testimonials = [
     {
-      text: 'Traveling with this company is a true delight! They pay attention to every detail and ensure your trip is unforgettable.',
-      author: 'Alice Johnson, New York',
+      text: t('text-1'),
+      author: t('author-1'),
     },
     {
-      text: 'The tour guides were knowledgeable and friendly. I learned so much about the culture and history of each place we visited.',
-      author: 'Mark Thompson, London',
+      text: t('text-2'),
+      author: t('author-2'),
     },
     {
-      text: "From booking to return, everything was smooth and well-organized. I'll definitely use their services again!",
-      author: 'Sarah Lee, Sydney',
+      text: t('text-3'),
+      author: t('author-3'),
     },
     {
-      text: 'The customized itinerary they created for us was perfect. It was like they read our minds!',
-      author: 'John Davis, Toronto',
+      text: t('text-4'),
+      author: t('author-4'),
     },
     {
-      text: 'The accommodations were top-notch, and the local experiences were authentic and engaging. Highly recommended!',
-      author: 'Emma Wilson, Berlin',
+      text: t('text-5'),
+      author: t('author-5'),
     },
   ];
 
   return (
     <div
-      className="bg-white dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8"
+      className="bg-orange-500 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8"
       id="about"
     >
       <div className="max-w-7xl mx-auto">
         {/* Main heading */}
         <div className="text-center mb-12" data-aos="fade-up">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            About Our Company
+          <h2 className="text-3xl font-extrabold dark:text-orange-500 text-gray-900 sm:text-4xl">
+            {t('about_heading-1')}
           </h2>
-          <p className="mt-4 text-xl text-gray-600">
-            Providing exceptional travel experiences for over 20 years
+          <p className="mt-4 text-xl text-gray-600 dark:text-orange-500">
+            {t('about__paragriph-1')}
           </p>
         </div>
 
@@ -57,11 +59,9 @@ const AboutSection = () => {
           >
             <FaPlane className="w-12 h-12 text-blue-500 mb-4 mx-auto" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              International Travel
+              {t('about_heading-2')}
             </h3>
-            <p className="text-gray-600">
-              We organize trips to the most beautiful places in the world.
-            </p>
+            <p className="text-gray-600">{t('about__paragriph-2')}</p>
           </div>
 
           <div
@@ -71,11 +71,9 @@ const AboutSection = () => {
           >
             <FaHotel className="w-12 h-12 text-green-500 mb-4 mx-auto" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Comfortable Hotels
+              {t('about_heading-3')}
             </h3>
-            <p className="text-gray-600">
-              Stay in the best and most comfortable hotels.
-            </p>
+            <p className="text-gray-600">{t('about__paragriph-3')}</p>
           </div>
 
           <div
@@ -85,11 +83,9 @@ const AboutSection = () => {
           >
             <FaRoute className="w-12 h-12 text-yellow-500 mb-4 mx-auto" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Custom Routes
+              {t('about_heading-4')}
             </h3>
-            <p className="text-gray-600">
-              We create individual routes for each client.
-            </p>
+            <p className="text-gray-600">{t('about__paragriph-4')}</p>
           </div>
 
           <div
@@ -99,11 +95,9 @@ const AboutSection = () => {
           >
             <FaUserFriends className="w-12 h-12 text-purple-500 mb-4 mx-auto" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Professional Guides
+              {t('about_heading-5')}
             </h3>
-            <p className="text-gray-600">
-              Experienced and knowledgeable guides at your service.
-            </p>
+            <p className="text-gray-600">{t('about__paragriph-5')}</p>
           </div>
         </div>
 
@@ -122,21 +116,15 @@ const AboutSection = () => {
             </div>
             <div className="p-8">
               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                Our History
+                {t('about-foot-heading')}
               </div>
-              <p className="mt-2 text-gray-600">
-                Our company was founded in 2003 and has been providing
-                unforgettable travel experiences to thousands of clients over
-                the years. We always strive to provide the highest quality
-                services, taking into account the wishes and requirements of our
-                clients.
-              </p>
+              <p className="mt-2 text-gray-600">{t('about-foot-paragriph')}</p>
               <div className="mt-4">
                 <a
                   href="#"
                   className="text-indigo-500 hover:text-indigo-600 font-medium"
                 >
-                  Read more &rarr;
+                  {t('about-link')} &rarr;
                 </a>
               </div>
             </div>
@@ -145,8 +133,8 @@ const AboutSection = () => {
 
         {/* Testimonials */}
         <div className="mt-16" data-aos="fade-up">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-            What Our Clients Say
+          <h3 className="text-2xl font-bold dark:text-white text-gray-900 mb-4 text-center">
+            {t('foot_heading-about')}
           </h3>
           <Swiper
             modules={[Pagination, Autoplay]}

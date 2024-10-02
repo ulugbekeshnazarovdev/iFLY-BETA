@@ -8,9 +8,16 @@ i18n
   .use(LanguageDetector) // Automatically detects user's language
   .use(initReactI18next) // Passes i18n instance to react-i18next
   .init({
-    fallbackLng: 'uz', // Fallback language if the language detector fails
+    fallbackLng: 'en', // Fallback language if the language detector fails
     detection: {
-      order: ['path', 'cookie', 'localStorage', 'navigator', 'htmlTag', 'subdomain'],
+      order: [
+        'path',
+        'cookie',
+        'localStorage',
+        'navigator',
+        'htmlTag',
+        'subdomain',
+      ],
       caches: ['cookie'],
     },
     backend: {

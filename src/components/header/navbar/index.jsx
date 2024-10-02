@@ -67,7 +67,7 @@ const Navbar = () => {
       <div className="container mx-auto px-2">
         <div className="flex justify-between items-center h-16">
           <a href="/" className="w-14 h-14">
-            <img src={logo} className="w-full" alt="site logo" />
+            <img src={logo} className="w-full " alt="site logo" />
           </a>
 
           <ul className="hidden lg:flex xl:flex 2xl:flex items-center xl:w-[700px] justify-end gap-8">
@@ -82,20 +82,20 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#cite"
-                onClick={closeNavbar}
-                className="hover:text-white/50 text-zinc-100 font-medium text-[22px]  duration-500 dark:text-white"
-              >
-                {t('link-2')}
-              </a>
-            </li>
-            <li>
-              <a
                 href="#tours"
                 onClick={closeNavbar}
                 className="hover:text-white/50 text-zinc-100 font-medium text-[22px]  duration-500 dark:text-white"
               >
                 {t('link-3')}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#cite"
+                onClick={closeNavbar}
+                className="hover:text-white/50 text-zinc-100 font-medium text-[22px]  duration-500 dark:text-white"
+              >
+                {t('link-2')}
               </a>
             </li>
             <li>

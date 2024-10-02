@@ -12,11 +12,13 @@ import Turkia from '../../../assets/tur-3.jpg';
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS styles
 import { StateContext } from '../../../App';
+import { useTranslation } from 'react-i18next';
 
 // Set app element for accessibility
 Modal.setAppElement('#root');
 
 const Cite = () => {
+  const { t, i18 } = useTranslation();
   // useContext
   const { modalOpen, setModalOpen } = useContext(StateContext);
 
@@ -28,83 +30,73 @@ const Cite = () => {
   const countries = [
     {
       img: Tokyo,
-      title: 'Tokyo, Japan',
-      description:
-        'Tokyo is the capital city of Japan, blending traditional temples with modern skyscrapers.',
-      details:
-        'Tokyo offers an amazing mix of culture, food, technology, and history.',
-      population: '37.4 million',
-      districts: '23 special wards',
-      cities: 'Tokyo, Yokohama, Chiba',
-      currency: 'Japanese Yen (JPY)',
+      title: t('cite-title-1'),
+      description: t('cite-description-1'),
+      details: t('cite-details-1'),
+      population: t('cite-population-1'),
+      districts: t('cite-districts-1'),
+      cities: t('cite-cities-1'),
+      currency: t('cite-currency-1'),
     },
     {
       img: Island,
-      title: 'Island Getaway',
-      description:
-        'Relax in the stunning beauty of nature, away from the city noise.',
-      details:
-        'Islands offer peaceful retreats where you can enjoy the sea, sand, and serenity.',
-      population: '500,000',
-      districts: 'Various islands',
-      cities: 'Main island city, Beach Town',
-      currency: 'Island Dollar (ID)',
+      title: t('cite-title-2'),
+      description: t('cite-description-2'),
+      details: t('cite-details-2'),
+      population: t('cite-population-2'),
+      districts: t('cite-districts-2'),
+      cities: t('cite-cities-2'),
+      currency: t('cite-currency-2'),
     },
     {
       img: Australia,
-      title: 'Australia Adventure',
-      description:
-        'Discover the wild landscapes of Australia, from outback deserts to vibrant coral reefs.',
-      details:
-        'Australia is home to a variety of wildlife and natural wonders.',
-      population: '25.7 million',
-      districts: '6 states, 2 territories',
-      cities: 'Sydney, Melbourne, Brisbane',
-      currency: 'Australian Dollar (AUD)',
+      title: t('cite-title-3'),
+      description: t('cite-description-3'),
+      details: t('cite-details-3'),
+      population: t('cite-population-3'),
+      districts: t('cite-districts-3'),
+      cities: t('cite-cities-3'),
+      currency: t('cite-currency-3'),
     },
     {
       img: Dubai,
-      title: 'Dubai, UAE',
-      description: 'Witness the futuristic skyline and luxury of Dubai.',
-      details:
-        'Dubai offers endless shopping, world-class resorts, and extraordinary architecture.',
-      population: '3.3 million',
-      districts: 'Several areas and districts',
-      cities: 'Dubai, Abu Dhabi',
-      currency: 'UAE Dirham (AED)',
+      title: t('cite-title-4'),
+      description: t('cite-description-4'),
+      details: t('cite-details-4'),
+      population: t('cite-population-4'),
+      districts: t('cite-districts-4'),
+      cities: t('cite-cities-4'),
+      currency: t('cite-currency-4'),
     },
     {
       img: LosAngeles,
-      title: 'Los Angeles, USA',
-      description: 'The city of dreams and Hollywood glitz.',
-      details:
-        'Los Angeles offers vibrant culture, iconic spots like the Hollywood sign.',
-      population: '3.9 million',
-      districts: 'Downtown, Hollywood, Santa Monica',
-      cities: 'Los Angeles, Santa Monica, Beverly Hills',
-      currency: 'US Dollar (USD)',
+      title: t('cite-title-5'),
+      description: t('cite-description-5'),
+      details: t('cite-details-5'),
+      population: t('cite-population-5'),
+      districts: t('cite-districts-5'),
+      cities: t('cite-cities-5'),
+      currency: t('cite-currency-5'),
     },
     {
       img: Tailand,
-      title: 'Tropical Thailand',
-      description: 'Relax on beautiful beaches and discover ancient temples.',
-      details:
-        'Thailand is known for its beautiful islands, street food, and rich cultural heritage.',
-      population: '69.8 million',
-      districts: '76 provinces',
-      cities: 'Bangkok, Chiang Mai, Phuket',
-      currency: 'Thai Baht (THB)',
+      title: t('cite-title-6'),
+      description: t('cite-description-6'),
+      details: t('cite-details-'),
+      population: t('cite-population-6'),
+      districts: t('cite-districts-6'),
+      cities: t('cite-cities-6'),
+      currency: t('cite-currency-6'),
     },
     {
       img: Turkia,
-      title: 'Magical Turkey',
-      description:
-        'Explore the rich history and stunning landscapes of Turkey.',
-      details: 'Turkey offers a unique blend of European and Asian cultures.',
-      population: '84 million',
-      districts: '81 provinces',
-      cities: 'Istanbul, Ankara, Izmir',
-      currency: 'Turkish Lira (TRY)',
+      title: t('cite-title-7'),
+      description: t('cite-description-7'),
+      details: t('cite-details-7'),
+      population: t('cite-population-7'),
+      districts: t('cite-districts-7'),
+      cities: t('cite-cities-7'),
+      currency: t('cite-currency-7'),
     },
   ];
 
@@ -135,7 +127,7 @@ const Cite = () => {
   return (
     <div className="container mx-auto py-20 px-5  font-mono" id="cite">
       <h1 className="text-center text-4xl font-bold mb-8" data-aos="fade-up">
-        Explore Countries
+        {t('cite_heading')}
       </h1>
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
@@ -158,7 +150,7 @@ const Cite = () => {
               <p className="mt-2 text-gray-200">{country.description}</p>
               <div className="mt-4 flex justify-between items-center">
                 <button className="text-sm bg-white text-black rounded px-4 py-1">
-                  Learn More
+                  {t('button-name')}
                 </button>
               </div>
             </div>
@@ -186,29 +178,30 @@ const Cite = () => {
             <h2 className="text-3xl font-bold mb-4">{selectedCountry.title}</h2>
             <p className="text-lg mb-4">{selectedCountry.details}</p>
             <p>
-              <strong>Population:</strong> {selectedCountry.population}
+              <strong>{t('cites-strong-1')}</strong>{' '}
+              {selectedCountry.population}
             </p>
             <p>
-              <strong>Districts:</strong> {selectedCountry.districts}
+              <strong>{t('cites-strong-2')}</strong> {selectedCountry.districts}
             </p>
             <p>
-              <strong>Cities:</strong> {selectedCountry.cities}
+              <strong>{t('cites-strong-3')}</strong> {selectedCountry.cities}
             </p>
             <p>
-              <strong>Currency:</strong> {selectedCountry.currency}
+              <strong>{t('cites-strong-4')}</strong> {selectedCountry.currency}
             </p>
             <div className="mt-6 flex justify-between gap-4 items-center">
               <button
                 onClick={closeModal}
                 className="bg-gray-500 w-full text-center text-white py-2 px-4 rounded-lg"
               >
-                Close
+                {t('button-name-1')}
               </button>
               <button
                 onClick={toggleModal}
                 className="bg-gray-500 w-full text-center text-white py-2 px-4 rounded-lg"
               >
-                Contact
+                {t('button-name-2')}
               </button>
             </div>
           </div>
