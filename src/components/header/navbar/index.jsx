@@ -64,10 +64,10 @@ const Navbar = () => {
 
   return (
     <nav className="bg-orange-500 dark:bg-gray-900 shadow fixed w-full left-0 z-50 h-16">
-      <div className="container mx-auto px-5">
+      <div className="container mx-auto px-2">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="w-24 h-24">
-            <img src={logo} className="w-full p-4" alt="site logo" />
+          <a href="/" className="w-14 h-14">
+            <img src={logo} className="w-full" alt="site logo" />
           </a>
 
           <ul className="hidden lg:flex xl:flex 2xl:flex items-center xl:w-[700px] justify-end gap-8">
