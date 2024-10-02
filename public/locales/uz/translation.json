@@ -194,5 +194,14 @@
   "subscribe": "Bizning yangiliklarimizga obuna bo'ling",
   "subscribe_plac": "Sizning Email manzilingiz",
   "button__name-foot": "Obuna bo'lish",
-  "footer__text": "2023 Sizning Kompaniya Nomi. Barcha huquqlar himoyalangan."
+  "footer__text": "2023 Sizning Kompaniya Nomi. Barcha huquqlar himoyalangan.",
+
+  "contact__toast-success": "Xabaringiz yuborildi!",
+  "contact__toast-error": "Xabar yuborishda xato yuz berdi.",
+  "contact__heading": "Xabar yuboring!",
+  "contact__label-1": "To'liq Ism",
+  "contact__label-2": "Email Manzil",
+  "contact__label-3": "Mavzu nima xaqida",
+  "contact__label-4": "Sizni Xabaringgiz",
+  "button__contact": "Yuborish"
 }

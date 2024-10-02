@@ -166,12 +166,12 @@ const Cite = () => {
           contentLabel="Country Details"
           className="fixed inset-0 font-mono flex items-center justify-center bg-black/70 p-6"
         >
-          <div className="bg-white dark:bg-gray-900 dark:text-white p-8 rounded-lg max-w-2xl w-full text-center">
+          <div className="bg-white dark:bg-gray-900 dark:text-white p-8 rounded-lg max-w-2xl h- text-center">
             <div className="relative">
               <img
                 src={selectedCountry.img}
                 alt={selectedCountry.title}
-                className="w-full h-72 object-cover rounded-lg mb-4"
+                className="w-full h-40 object-cover rounded-lg mb-4"
                 style={{ filter: 'grayscale(50%) brightness(80%)' }} // Adding gradient filter effect
               />
             </div>

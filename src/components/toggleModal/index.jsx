@@ -5,8 +5,10 @@ import { IoClose } from 'react-icons/io5';
 import axios from 'axios'; // axiosni import qiling
 import { toast } from 'react-toastify'; // toast uchun import
 import 'react-toastify/dist/ReactToastify.css'; // toastning css faylini import qilish
+import { useTranslation } from 'react-i18next';
 
 const ToggleModal = () => {
+  const { t } = useTranslation();
   const { modalOpen, setModalOpen } = useContext(StateContext);
 
   function toggleModal() {
@@ -19,7 +21,7 @@ const ToggleModal = () => {
     formState: { errors },
   } = useForm();
 
-  const botToken = import.meta.env.VITE_REACT_APP_BOT_TOKEN ;
+  const botToken = import.meta.env.VITE_REACT_APP_BOT_TOKEN;
   const chatId = import.meta.env.VITE_REACT_APP_CHAT_ID;
   const onSubmit = async (data) => {
     try {
@@ -31,14 +33,13 @@ const ToggleModal = () => {
         }
       );
       if (response.data.ok) {
-        toast.success('Xabaringiz yuborildi!', { autoClose: 3000 });
+        toast.success(t('contact__toast-success'), { autoClose: 3000 });
         toggleModal();
       } else {
-        toast.error('Xabar yuborishda xato yuz berdi.');
+        toast.error(t('contact__toast-error'));
       }
     } catch (error) {
-      toast.error('Xabar yuborishda xato yuz berdi.');
-      console.error(error);
+      toast.error(t('contact__toast-error'));
     }
   };
 
@@ -49,7 +50,9 @@ const ToggleModal = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-[450px]">
               <div className="flex items-center justify-between">
-                <h2 className="text-4xl font-semibold mb-4">Contact Me!</h2>
+                <h2 className="text-4xl font-semibold mb-4">
+                  {t('contact__heading')}
+                </h2>
                 <button
                   className="flex justify-center items-center text-white text-4xl p-2 bg-orange-500 rounded-md cursor-pointer"
                   onClick={toggleModal}
@@ -74,9 +77,10 @@ const ToggleModal = () => {
                   )}
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-1">Email</label>
+                  <label className="block mb-1">{t('contact__label-2')}</label>
                   <input
                     type="email"
+                    placeholder=""
                     className={`border p-3 w-full h-12 text-lg ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
@@ -89,7 +93,7 @@ const ToggleModal = () => {
                   )}
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-1">Subject</label>
+                  <label className="block mb-1">{t('contact__label-3')}</label>
                   <input
                     type="text"
                     className={`border p-3 w-full h-12 text-lg ${
@@ -104,7 +108,7 @@ const ToggleModal = () => {
                   )}
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-1">Your Message</label>
+                  <label className="block mb-1">{t('contact__label-4')}</label>
                   <textarea
                     className={`border p-3 w-full h-24 text-lg ${
                       errors.message ? 'border-red-500' : 'border-gray-300'
@@ -121,7 +125,7 @@ const ToggleModal = () => {
                   type="submit"
                   className="w-full bg-orange-500 text-white  p-3 rounded hover:bg-gray-200 transition"
                 >
-                  Yuborish
+                  {t('button__contact')}
                 </button>
               </form>
             </div>

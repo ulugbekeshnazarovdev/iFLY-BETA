@@ -194,5 +194,14 @@
   "subscribe": "Subscribe to Our Newsletter",
   "subscribe_plac": "Your Email",
   "button__name-foot": "Subscribe",
-  "footer__text": "2023 Your Company Name. All rights reserved."
+  "footer__text": "2023 Your Company Name. All rights reserved.",
+
+  "contact__toast-success": "Your message has been sent!",
+  "contact__toast-error": "An error occurred while sending the message.",
+  "contact__heading": "Send a Message!",
+  "contact__label-1": "Full Name",
+  "contact__label-2": "Email Address",
+  "contact__label-3": "Subject of the message",
+  "contact__label-4": "Your Message",
+  "button__contact": "Send"
 }
