@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-
+import Logos from '../../assets/logo.png';
 const Footer = () => {
   const { t } = useTranslation();
   const {
@@ -61,8 +61,8 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <img
-              className="h-12 mb-4"
-              src="" // Replace with your logo
+              className="w-14 h-14 mb-4"
+              src={Logos} // Replace with your logo
               alt="Company logo"
             />
             <p className="text-sm">{t('footer__company-about')}</p>
@@ -182,28 +182,7 @@ const Footer = () => {
           {/* Newsletter Subscription */}
           <div>
             <h3 className="text-lg font-semibold mb-2">{t('subscribe')}</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input
-                type="email"
-                placeholder={t('subscribe_plac')}
-                className="w-full p-2 rounded-md  text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                {...register('email', { required: true })}
-              />
-              {errors.email && (
-                <span className="text-red-500">{t('email-error')}</span>
-              )}
-
-              <button
-                type="submit"
-                className="mt-2 w-full py-2 bg-white text-gray-900 dark:bg-white dark:text-black hover:bg-orange-400 font-semibold rounded-md transition duration-300"
-              >
-                {t('button__name-foot')}
-              </button>
-            </form>
           </div>
-        </div>
-        <div className="mt-8 border-t border-gray-700 pt-6 text-center">
-          <p className="text-sm">&copy; {t('footer__text')}</p>
         </div>
       </div>
     </footer>

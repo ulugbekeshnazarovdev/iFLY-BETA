@@ -66,7 +66,7 @@ const ToggleModal = () => {
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
-                  <label className="block mb-1">Name</label>
+                  <label className="block mb-1">{t('contact__label-1')}</label>
                   <input
                     type="text"
                     className={`border p-3 w-full h-12 text-lg ${
